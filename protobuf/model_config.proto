@@ -398,6 +398,11 @@ message ModelInput
   //@@     has a different shape in each request.
   //@@
   bool allow_ragged_batch = 7;
+
+  //@@  .. cpp:var:: uint32 lego_buffer_id
+  //@@     buffer connection between submodels
+  //@@
+  uint32 lego_buffer_id = 8;
 }
 
 //@@
@@ -450,6 +455,23 @@ message ModelOutput
   //@@     model.
   //@@
   bool is_shape_tensor = 6;
+
+  //@@  .. cpp:var:: uint32 lego_buffer_id
+  //@@     buffer connection between submodels
+  //@@
+  uint32 lego_buffer_id = 7;
+}
+
+//@@ .. cpp:var message StageInput
+message StageInput
+{
+  repeated ModelInput input = 1;
+}
+
+//@@ .. cpp:var message StageOutput
+message StageOutput
+{
+  repeated ModelOutput output = 1;
 }
 
 //@@  .. cpp:var:: message BatchInput
@@ -1829,4 +1851,24 @@ message ModelConfig
   //@@     model.
   //@@
   ModelResponseCache response_cache = 24;
+
+  //@@ .. cpp:var:: uint32 total Stages
+
+  uint32 total_stages = 25;
+
+  repeated uint32 blocks_per_stage = 26;
+
+  repeated uint32 favor_per_stage = 27;
+
+  int32 tetris_max_stage = 28;
+  uint32 tetris_max_bs = 29;
+  uint64 tetris_max_time = 30;
+
+  uint32 tetris_scheduler = 31;
+
+  repeated string stage_filenames = 32;
+  repeated StageInput stage_input = 33;
+  repeated StageOutput stage_output = 34;
+
+  int32 total_tetris_buffer = 35;
 }
