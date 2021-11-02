@@ -398,11 +398,6 @@ message ModelInput
   //@@     has a different shape in each request.
   //@@
   bool allow_ragged_batch = 7;
-
-  //@@  .. cpp:var:: uint32 lego_buffer_id
-  //@@     buffer connection between submodels
-  //@@
-  uint32 lego_buffer_id = 8;
 }
 
 //@@
@@ -455,23 +450,6 @@ message ModelOutput
   //@@     model.
   //@@
   bool is_shape_tensor = 6;
-
-  //@@  .. cpp:var:: uint32 lego_buffer_id
-  //@@     buffer connection between submodels
-  //@@
-  uint32 lego_buffer_id = 7;
-}
-
-//@@ .. cpp:var message StageInput
-message StageInput
-{
-  repeated ModelInput input = 1;
-}
-
-//@@ .. cpp:var message StageOutput
-message StageOutput
-{
-  repeated ModelOutput output = 1;
 }
 
 //@@  .. cpp:var:: message BatchInput
@@ -1852,23 +1830,59 @@ message ModelConfig
   //@@
   ModelResponseCache response_cache = 24;
 
-  //@@ .. cpp:var:: uint32 total Stages
+  message LegoConfig
+  {
+    //@@ .. cpp:var:: uint32 total Stages
+    uint32 total_stages = 1;
+    uint32 total_buffers = 2;
 
-  uint32 total_stages = 25;
+    //@@ .. cpp:var:: uint32 the number of engines used for each stage
+    repeated uint32 engine_per_stage = 3;
+    //@@ .. cpp:var:: uint32 the favored batch size for each stage
+    repeated uint32 favor_per_stage = 4;
+    //@@ .. cpp:var::
+    repeated string stage_filenames = 5;
 
-  repeated uint32 blocks_per_stage = 26;
+    message ScheduleOption
+    {
+      uint32 max_stage = 2;
+      uint32 max_bs = 3;
+      uint64 max_us = 4;
+      string operation = 5;
+    }
 
-  repeated uint32 favor_per_stage = 27;
+    ScheduleOption schedule_option = 6;
 
-  int32 tetris_max_stage = 28;
-  uint32 tetris_max_bs = 29;
-  uint64 tetris_max_time = 30;
+    message InOut
+    {
+      //@@  .. cpp:var:: string name
+      //@@
+      //@@     The name of the output.
+      //@@
+      uint32 id = 1;
+      string name = 2;
 
-  uint32 tetris_scheduler = 31;
+      //@@  .. cpp:var:: DataType data_type
+      //@@
+      //@@     The data-type of the output.
+      //@@
+      DataType data_type = 3;
 
-  repeated string stage_filenames = 32;
-  repeated StageInput stage_input = 33;
-  repeated StageOutput stage_output = 34;
+      //@@  .. cpp:var:: int64 dims (repeated)
+      //@@
+      //@@     The dimensions/shape of the output tensor.
+      //@@
+      repeated int64 dims = 4;
+    }
+    //@@ .. cpp:var message StageInput
+    message StageInput { repeated InOut input = 1; }
 
-  int32 total_tetris_buffer = 35;
+    //@@ .. cpp:var message StageOutput
+    message StageOutput { repeated InOut output = 1; }
+
+    repeated StageInput stage_input = 7;
+    repeated StageOutput stage_output = 8;
+  }
+
+  LegoConfig lego_config = 25;
 }
