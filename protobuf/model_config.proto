@@ -1837,22 +1837,10 @@ message ModelConfig
     uint32 total_buffers = 2;
 
     //@@ .. cpp:var:: uint32 the number of engines used for each stage
-    repeated uint32 engine_per_stage = 3;
+    repeated uint32 engines_per_stage = 3;
     //@@ .. cpp:var:: uint32 the favored batch size for each stage
-    repeated uint32 favor_per_stage = 4;
     //@@ .. cpp:var::
     repeated string stage_filenames = 5;
-
-    message ScheduleOption
-    {
-      uint32 max_stage = 1;
-      uint32 max_bs = 2;
-      uint64 max_us = 3;
-      string operation = 4;
-      uint32 mode = 5;
-    }
-
-    ScheduleOption schedule_option = 6;
 
     message InOut
     {
@@ -1861,13 +1849,6 @@ message ModelConfig
       //@@     The name of the output.
       //@@
       uint32 id = 1;
-      string name = 2;
-
-      //@@  .. cpp:var:: DataType data_type
-      //@@
-      //@@     The data-type of the output.
-      //@@
-      DataType data_type = 3;
 
       //@@  .. cpp:var:: int64 dims (repeated)
       //@@
@@ -1883,6 +1864,25 @@ message ModelConfig
 
     repeated StageInput stage_input = 7;
     repeated StageOutput stage_output = 8;
+
+    message ScheduleOption
+    {
+      string operation_name = 1;
+      uint32 exec_mode = 2;
+
+      //@@ .. cpp:var:: uint32 the favored batch size used for each stage
+      repeated uint32 favor_per_stage = 3;
+
+      //@@ .. cpp:var:: uint32 the preferred sequence length
+      repeated uint32 preferred_seq_len = 4;
+
+      //@@ .. cpp:var:: uint32 controll whether lego allows merge
+      uint32 max_allow_merge_stage = 5;
+      uint32 max_allow_merge_batchsize = 6;
+      uint32 max_allow_merge_microseconds = 7;
+    }
+
+    ScheduleOption schedule_option = 6;
   }
 
   LegoConfig lego_config = 25;
