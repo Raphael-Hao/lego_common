@@ -1845,10 +1845,11 @@ message ModelConfig
 
     message ScheduleOption
     {
-      uint32 max_stage = 2;
-      uint32 max_bs = 3;
-      uint64 max_us = 4;
-      string operation = 5;
+      uint32 max_stage = 1;
+      uint32 max_bs = 2;
+      uint64 max_us = 3;
+      string operation = 4;
+      uint32 mode = 5;
     }
 
     ScheduleOption schedule_option = 6;
