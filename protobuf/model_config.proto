@@ -1867,7 +1867,7 @@ message ModelConfig
 
     message ScheduleOption
     {
-      string operation_name = 1;
+      repeated string stage_operation = 1;
 
       enum EXEC_MODE {
         ONE_HOT = 0;
