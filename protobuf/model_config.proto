@@ -1862,19 +1862,19 @@ message ModelConfig
     //@@ .. cpp:var message StageOutput
     message StageOutput { repeated InOut output = 1; }
 
-    repeated StageInput stage_input = 7;
-    repeated StageOutput stage_output = 8;
+    repeated StageInput stages_inputs = 7;
+    repeated StageOutput stages_outputs = 8;
 
     message ScheduleOption
     {
-      repeated string stage_operation = 1;
+      repeated string stage_operations = 1;
 
       enum EXEC_MODE {
         ONE_HOT = 0;
         ALL_ACT = 1;
       }
 
-      EXEC_MODE exec_mode = 2;
+      EXEC_MODE executor_mode = 2;
 
       //@@ .. cpp:var:: uint32 the favored batch size used for each stage
       repeated uint32 favor_per_stage = 3;
