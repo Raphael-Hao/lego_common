@@ -1850,6 +1850,10 @@ message ModelConfig
       //@@
       uint32 id = 1;
 
+      string name = 2;
+
+      DataType data_type = 3;
+
       //@@  .. cpp:var:: int64 dims (repeated)
       //@@
       //@@     The dimensions/shape of the output tensor.
