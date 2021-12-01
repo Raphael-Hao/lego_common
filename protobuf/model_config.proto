@@ -1871,25 +1871,33 @@ message ModelConfig
 
     message ScheduleOption
     {
-      repeated string stage_operations = 1;
+      enum SchedulerType {
+        LOAD_DVA = 0;
+        INPUT_DVA = 1;
+        OPERATOR_DVA = 2;
+      }
 
-      enum EXEC_MODE {
+      SchedulerType scheduler_type = 1;
+
+      repeated string stage_operations = 2;
+
+      enum EXECMode {
         ONE_HOT = 0;
         ALL_ACT = 1;
       }
 
-      EXEC_MODE executor_mode = 2;
+      EXECMode executor_mode = 3;
 
       //@@ .. cpp:var:: uint32 the favored batch size used for each stage
-      repeated uint32 favor_per_stage = 3;
+      repeated uint32 favor_per_stage = 4;
 
       //@@ .. cpp:var:: uint32 the preferred sequence length
-      repeated uint32 preferred_seq_len = 4;
+      repeated uint32 preferred_seq_len = 5;
 
       //@@ .. cpp:var:: uint32 controll whether lego allows merge
-      uint32 max_allow_merge_stage = 5;
-      uint32 max_allow_merge_batchsize = 6;
-      uint32 max_allow_merge_microseconds = 7;
+      uint32 max_allow_merge_stage = 6;
+      uint32 max_allow_merge_batchsize = 7;
+      uint32 max_allow_merge_microseconds = 8;
     }
 
     ScheduleOption schedule_option = 6;
