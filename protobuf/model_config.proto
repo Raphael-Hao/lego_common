@@ -1858,7 +1858,7 @@ message ModelConfig
       //@@
       //@@     The dimensions/shape of the output tensor.
       //@@
-      repeated int64 dims = 4;
+      repeated int32 dims = 4;
     }
     //@@ .. cpp:var message StageInput
     message StageInput { repeated InOut input = 1; }
