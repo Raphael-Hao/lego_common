@@ -1873,9 +1873,10 @@ message ModelConfig
     {
       enum SchedulerType {
         NORMAL = 0;
-        LOAD_DVA = 1;
-        INPUT_DVA = 2;
-        OPERATOR_DVA = 3;
+        NORMAL_INPUT = 1;
+        LOAD_DVA = 2;
+        INPUT_DVA = 3;
+        OPERATOR_DVA = 4;
       }
 
       SchedulerType scheduler_type = 1;
