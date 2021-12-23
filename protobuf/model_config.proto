@@ -1835,9 +1835,10 @@ message ModelConfig
     //@@ .. cpp:var:: uint32 total Stages
     uint32 total_stages = 1;
     uint32 total_buffers = 2;
+    string log_dir = 3;
 
     //@@ .. cpp:var:: uint32 the number of engines used for each stage
-    repeated uint32 engines_per_stage = 3;
+    repeated uint32 engines_per_stage = 4;
     //@@ .. cpp:var:: uint32 the favored batch size for each stage
     //@@ .. cpp:var::
     repeated string stage_filenames = 5;
@@ -1866,8 +1867,8 @@ message ModelConfig
     //@@ .. cpp:var message StageOutput
     message StageOutput { repeated InOut output = 1; }
 
-    repeated StageInput stages_inputs = 7;
-    repeated StageOutput stages_outputs = 8;
+    repeated StageInput stages_inputs = 6;
+    repeated StageOutput stages_outputs = 7;
 
     message ScheduleOption
     {
@@ -1902,7 +1903,7 @@ message ModelConfig
       uint32 max_allow_merge_microseconds = 8;
     }
 
-    ScheduleOption schedule_option = 6;
+    ScheduleOption schedule_option = 7;
   }
 
   LegoConfig lego_config = 25;
