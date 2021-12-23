@@ -1903,7 +1903,7 @@ message ModelConfig
       uint32 max_allow_merge_microseconds = 8;
     }
 
-    ScheduleOption schedule_option = 7;
+    ScheduleOption schedule_option = 8;
   }
 
   LegoConfig lego_config = 25;
