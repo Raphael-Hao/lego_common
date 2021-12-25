@@ -1891,16 +1891,18 @@ message ModelConfig
 
       EXECMode executor_mode = 3;
 
+      uint32 buffer_size = 4;
+
       //@@ .. cpp:var:: uint32 the favored batch size used for each stage
-      repeated uint32 favor_per_stage = 4;
+      repeated uint32 favor_per_stage = 5;
 
       //@@ .. cpp:var:: uint32 the preferred sequence length
-      repeated uint32 preferred_seq_len = 5;
+      repeated uint32 preferred_seq_len = 6;
 
       //@@ .. cpp:var:: uint32 controll whether lego allows merge
-      uint32 max_allow_merge_stage = 6;
-      uint32 max_allow_merge_batchsize = 7;
-      uint32 max_allow_merge_microseconds = 8;
+      uint32 max_allow_merge_stage = 7;
+      uint32 max_allow_merge_batchsize = 8;
+      uint32 max_allow_merge_microseconds = 9;
     }
 
     ScheduleOption schedule_option = 8;
