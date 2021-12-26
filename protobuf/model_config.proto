@@ -1891,7 +1891,7 @@ message ModelConfig
 
       EXECMode executor_mode = 3;
 
-      uint32 buffer_size = 4;
+      uint32 buffer_set_size = 4;
 
       //@@ .. cpp:var:: uint32 the favored batch size used for each stage
       repeated uint32 favor_per_stage = 5;
