@@ -1837,6 +1837,7 @@ message ModelConfig
     uint32 total_buffers = 2;
     string log_dir = 3;
 
+
     //@@ .. cpp:var:: uint32 the number of engines used for each stage
     repeated uint32 engines_per_stage = 4;
     //@@ .. cpp:var:: uint32 the favored batch size for each stage
@@ -1878,31 +1879,27 @@ message ModelConfig
         LOAD_DVA = 2;
         INPUT_DVA = 3;
         OPERATOR_DVA = 4;
+        LSTM_DVA = 5;
       }
 
       SchedulerType scheduler_type = 1;
 
-      repeated string stage_operations = 2;
+      // repeated string stage_operations = 2;
 
-      enum EXECMode {
-        ONE_HOT = 0;
-        ALL_ACT = 1;
-      }
+      uint32 buffer_set_size = 2;
 
-      EXECMode executor_mode = 3;
-
-      uint32 buffer_set_size = 4;
+      bool busy_wait_events = 3;
 
       //@@ .. cpp:var:: uint32 the favored batch size used for each stage
-      repeated uint32 favor_per_stage = 5;
+      repeated uint32 favor_per_stage = 4;
 
       //@@ .. cpp:var:: uint32 the preferred sequence length
-      repeated uint32 preferred_seq_len = 6;
+      repeated uint32 preferred_seq_len = 5;
 
       //@@ .. cpp:var:: uint32 controll whether lego allows merge
-      uint32 max_allow_merge_stage = 7;
-      uint32 max_allow_merge_batchsize = 8;
-      uint32 max_allow_merge_microseconds = 9;
+      uint32 max_allow_merge_stage = 6;
+      uint32 max_allow_merge_batchsize = 7;
+      uint32 max_allow_merge_microseconds = 8;
     }
 
     ScheduleOption schedule_option = 8;
