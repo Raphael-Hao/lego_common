@@ -1886,7 +1886,7 @@ message ModelConfig
 
       // repeated string stage_operations = 2;
 
-      uint32 buffer_set_size = 2;
+      int32 buffer_set_size = 2;
 
       bool busy_wait_events = 3;
 
