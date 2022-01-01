@@ -1837,9 +1837,6 @@ message ModelConfig
     uint32 total_buffers = 2;
     string log_dir = 3;
 
-
-    //@@ .. cpp:var:: uint32 the number of engines used for each stage
-    repeated uint32 engines_per_stage = 4;
     //@@ .. cpp:var:: uint32 the favored batch size for each stage
     //@@ .. cpp:var::
     repeated string stage_filenames = 5;
@@ -1883,8 +1880,6 @@ message ModelConfig
       }
 
       SchedulerType scheduler_type = 1;
-
-      // repeated string stage_operations = 2;
 
       int32 buffer_set_size = 2;
 
